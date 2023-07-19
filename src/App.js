@@ -113,7 +113,7 @@ class App extends Component {
       <Container>
         <ReaderContainer fullscreen={fullscreen}>
           <ReactReader
-            url={epubUrl}
+            url={DEMO_URL}
             title={localName || DEMO_NAME}
             location={location}
             locationChanged={this.onLocationChanged}
