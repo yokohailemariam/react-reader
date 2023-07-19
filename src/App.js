@@ -53,17 +53,17 @@ class App extends Component {
     this.rendition = null
   }
 
-  componentDidMount() {
-    const fetchEpub = async () => {
-      const response = await fetch(
-        'https://www.gutenberg.org/ebooks/11.epub.images'
-      )
-      const blob = await response.blob()
-      const epubUrl = URL.createObjectURL(blob)
-      this.setState({ epubUrl })
-    }
-    fetchEpub()
-  }
+  //   componentDidMount() {
+  //     const fetchEpub = async () => {
+  //       const response = await fetch(
+  //         'https://www.gutenberg.org/ebooks/11.epub.images'
+  //       )
+  //       const blob = await response.blob()
+  //       const epubUrl = URL.createObjectURL(blob)
+  //       this.setState({ epubUrl })
+  //     }
+  //     fetchEpub()
+  //   }
 
   toggleFullscreen = () => {
     this.setState(
