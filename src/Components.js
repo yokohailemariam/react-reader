@@ -38,23 +38,23 @@ export const ButtonWrapper = styled.div`
     padding-top: 0.5rem;
   `};
 `
-export const LogoWrapper = styled.a`
-  ${breakpoint('tablet')`
-    margin-right: auto;
-  `};
-`
-export const Logo = styled.img`
-  width: 250px;
-  height: auto;
-  display: block;
-  margin: 0 auto 0px;
-  ${breakpoint('tablet')`
-    width: 330px;
-    height: 104px;
-    display: inline-block;
-    margin-left: 2px;
-  `};
-`
+// export const LogoWrapper = styled.a`
+//   ${breakpoint('tablet')`
+//     margin-right: auto;
+//   `};
+// `
+// export const Logo = styled.img`
+//   width: 250px;
+//   height: auto;
+//   display: block;
+//   margin: 0 auto 0px;
+//   ${breakpoint('tablet')`
+//     width: 330px;
+//     height: 104px;
+//     display: inline-block;
+//     margin-left: 2px;
+//   `};
+// `
 const Button = styled.button`
   font-family: inherit;
   font-size: inherit;

@@ -1,21 +1,11 @@
 import React, { Component } from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { ReactReader } from './modules'
-import {
-  Container,
-  ReaderContainer,
-  Bar,
-  LogoWrapper,
-  Logo,
-  GenericButton,
-  CloseIcon,
-  FontSizeButton,
-  ButtonWrapper
-} from './Components'
+import { Container, ReaderContainer } from './Components'
 
 const storage = global.localStorage || null
 
-const DEMO_URL = '/files/alice.epub'
+const DEMO_URL = 'https://www.gutenberg.org/ebooks/11.epub.images'
 const DEMO_NAME = 'Alice in wonderland'
 
 const GlobalStyle = createGlobalStyle`
@@ -49,16 +39,29 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      fullscreen: false,
+      fullscreen: true,
       location:
         storage && storage.getItem('epub-location')
           ? storage.getItem('epub-location')
           : 2,
       localFile: null,
       localName: null,
-      largeText: false
+      largeText: false,
+      epubUrl: ''
     }
     this.rendition = null
+  }
+
+  componentDidMount() {
+    const fetchEpub = async () => {
+      const response = await fetch(
+        'https://www.gutenberg.org/ebooks/11.epub.images'
+      )
+      const blob = await response.blob()
+      const epubUrl = URL.createObjectURL(blob)
+      this.setState({ epubUrl })
+    }
+    fetchEpub()
   }
 
   toggleFullscreen = () => {
@@ -104,35 +107,20 @@ class App extends Component {
     rendition.themes.fontSize(largeText ? '140%' : '100%')
   }
   render() {
-    const { fullscreen, location, localFile, localName } = this.state
+    const { fullscreen, location, localFile, localName, epubUrl } = this.state
     return (
       <Container>
-        <GlobalStyle />
-        <Bar>
-          <LogoWrapper href="https://github.com/gerhardsletten/react-reader">
-            <Logo
-              src="https://react-reader.metabits.no/files/react-reader.svg"
-              alt="React-reader - powered by epubjs"
-            />
-          </LogoWrapper>
-          <ButtonWrapper>
-            <GenericButton onClick={this.toggleFullscreen}>
-              Use full browser window
-              <CloseIcon />
-            </GenericButton>
-          </ButtonWrapper>
-        </Bar>
         <ReaderContainer fullscreen={fullscreen}>
           <ReactReader
-            url={localFile || DEMO_URL}
+            url={epubUrl}
             title={localName || DEMO_NAME}
             location={location}
             locationChanged={this.onLocationChanged}
             getRendition={this.getRendition}
           />
-          <FontSizeButton onClick={this.onToggleFontSize}>
+          {/* <FontSizeButton onClick={this.onToggleFontSize}>
             Toggle font-size
-          </FontSizeButton>
+          </FontSizeButton> */}
         </ReaderContainer>
       </Container>
     )
