@@ -7,7 +7,7 @@ const storage = global.localStorage || null
 
 const DEMO_URL =
   'https://firebasestorage.googleapis.com/v0/b/safaricom-41234.appspot.com/o/new%20doc.epub?alt=media&token=c02d2fa6-436a-4c50-9415-811b067a1e65'
-const DEMO_NAME = 'Alice in wonderland'
+const DEMO_NAME = 'Alice in wonderland.'
 
 const GlobalStyle = createGlobalStyle`
   * {
